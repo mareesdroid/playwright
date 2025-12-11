@@ -8,6 +8,7 @@ import {
   inputParams,
 } from "../utils/helpers";
 import readJsonFile from "../data/booking.json";
+import { myCustomTest } from "../fixtures/login";
 
 test("export fn", async ({ page }) => {
   await page.goto(baseUrl);
@@ -143,3 +144,14 @@ test("Login using environment variables", async ({ page }) => {
   await page.getByPlaceholder("Password").fill(password!);
   await page.getByRole("button", { name: "Login" }).click();
 });
+
+// fixtures
+myCustomTest(
+  "directly land hero page, login auto handled by fixtures",
+  async ({ loggedInPage }) => {
+    await loggedInPage.waitForURL(
+      "https://the-internet.herokuapp.com/dashboard"
+    );
+    //add more assertion if needed
+  }
+);
