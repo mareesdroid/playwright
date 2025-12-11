@@ -7,27 +7,32 @@ Src are stored in the `training/` directory, and test result images are saved in
 
 ---
 
-## 📁 Project Structure
-
-playWright
-│
-├── training/ #
-│ └── test scripts used on each day
-│
-├── testResults/ # Screenshots of testscript outputs
-│
-|** notes/ # shared notes on training session
-|
-|** assignments/ # handson assignments
-├── package.json
-└── README.md
-
-
 ## installation
-npm install
-npx playwright install
 
+```bash
+  npm install
+  npx playwright install
+```
 
 ## 🧪 Running Tests
+
 Run all tests in the training/ || assignments/ directory:
-npx playwright test day1
+
+```bash
+  npx playwright test day1
+```
+
+## 📁 Project Structure
+
+playWright/
+│
+├── training/ # Daily training test scripts
+│
+├── assignments/ # Hands-on assignment exercises
+│
+├── notes/ # Shared notes from training sessions
+│
+├── testResults/ # Screenshots & test output images
+│
+├── package.json
+└── README.md
