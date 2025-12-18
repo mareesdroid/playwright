@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npx playwright test myTest", 
-    "reports": "npx playwright show-report"
+    "reports": "npx playwright show-report",
+    "sync": "npx playwright test myTest --project=chromium --workers=1"
   },
   "keywords": [],
   "author": "",

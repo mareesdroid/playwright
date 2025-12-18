@@ -26,9 +26,7 @@ export class AboutPage {
 
     const testimonialCards = this.page.locator(".ct-slide");
     const cardCount = await testimonialCards.count();
-    console.log(cardCount);
     const testimonials: Testimonial[] = [];
-    const texts = [];
     for (let i = 0; i < cardCount; i++) {
       const slide = testimonialCards.nth(i);
 
@@ -43,8 +41,6 @@ export class AboutPage {
         industry: texts[2]?.trim() || "",
       });
     }
-    console.log(testimonials);
-
     return testimonials;
   }
 }

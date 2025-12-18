@@ -7,9 +7,15 @@ import { ContactFormData } from "../types";
 import { JsonWriter } from "../utils/jsonWriter";
 
 test.describe("My Suite", () => {
+  let i = 1;
   test.beforeEach(async ({ page }) => {
+    console.log(`/////// Starting test: ${i} ///////`);
     const landingPage = new LandingPage(page);
     await landingPage.init();
+  });
+  test.afterEach(async ({ page }) => {
+    console.log(`/////// Ending test: ${i} ///////`);
+    i++;
   });
 
   test("display menu and compare screenshot", async ({ page }) => {
@@ -39,6 +45,8 @@ test.describe("My Suite", () => {
 
     const testimonials = await testimonialsPage.getTestimonials();
 
+    console.log("Total Testimonials: ", testimonials.length);
     JsonWriter.write("testimonials.json", testimonials);
+    console.log("Saved to json");
   });
 });
