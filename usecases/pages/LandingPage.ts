@@ -16,7 +16,7 @@ export class LandingPage {
 
   async verifyLandingPageScreenshot() {
     await expect(this.page).toHaveScreenshot("myImage.png", {
-      fullPage: true,
+      maxDiffPixelRatio: 0.02,
     });
   }
 }

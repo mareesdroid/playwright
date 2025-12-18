@@ -1,8 +1,10 @@
 import { test } from "@playwright/test";
 import { LandingPage } from "../pages/LandingPage";
 import { ContactPage } from "../pages/ContactPage";
+import { AboutPage } from "../pages/AboutPage";
 import sampData from "../data/input.json";
 import { ContactFormData } from "../types";
+import { JsonWriter } from "../utils/jsonWriter";
 
 test.describe("My Suite", () => {
   test("display menu and compare screenshot", async ({ page }) => {
@@ -28,5 +30,18 @@ test.describe("My Suite", () => {
     await contactPage.fillContactForm(sampData as ContactFormData);
 
     await page.waitForTimeout(5000);
+  });
+
+  test("scrape testimonials", async ({ page }) => {
+    const landingPage = new LandingPage(page);
+    const testimonialsPage = new AboutPage(page);
+
+    await landingPage.init();
+
+    await testimonialsPage.navigateToTestimonials();
+
+    const testimonials = await testimonialsPage.getTestimonials();
+
+    JsonWriter.write("testimonials.json", testimonials);
   });
 });
