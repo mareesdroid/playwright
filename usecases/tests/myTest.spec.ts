@@ -7,10 +7,13 @@ import { ContactFormData } from "../types";
 import { JsonWriter } from "../utils/jsonWriter";
 
 test.describe("My Suite", () => {
+  test.beforeEach(async ({ page }) => {
+    const landingPage = new LandingPage(page);
+    await landingPage.init();
+  });
+
   test("display menu and compare screenshot", async ({ page }) => {
     const landingPage = new LandingPage(page);
-
-    await landingPage.init();
 
     const menus = await landingPage.getMenuItems();
     console.log("Menu List:", menus);
@@ -20,10 +23,7 @@ test.describe("My Suite", () => {
   });
 
   test("fills the contact form", async ({ page }) => {
-    const landingPage = new LandingPage(page);
     const contactPage = new ContactPage(page);
-
-    await landingPage.init();
 
     await contactPage.clickContactMenu();
     await contactPage.scrollToView();
@@ -33,10 +33,7 @@ test.describe("My Suite", () => {
   });
 
   test("scrape testimonials", async ({ page }) => {
-    const landingPage = new LandingPage(page);
     const testimonialsPage = new AboutPage(page);
-
-    await landingPage.init();
 
     await testimonialsPage.navigateToTestimonials();
 
